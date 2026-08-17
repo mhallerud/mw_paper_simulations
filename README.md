@@ -19,7 +19,7 @@
 * **ORDER_SUMMARY_ALL.csv**: Dimer load summaries from multi-level optimizations.
 
 ### Panel Assessment Results:
-* SNP_panel_assessments.csv: Predicted dimer loads for existing panels, and predicted dimer loads after removing top 20% of offending primer pairs (Section 3 in the paper).
+* SNP_panel_assessments.csv: Predicted dimer loads for existing panels, and predicted dimer loads after removing top 20% of offending primer pairs (Section 3 in the paper). (Unfiltered! See Section3B_Existing_panel_offtarget_amp.R).
 * Predicted_Primer_Binding.zip: Folder containing full runPrimerTree outputs for existing panels.
 
 
