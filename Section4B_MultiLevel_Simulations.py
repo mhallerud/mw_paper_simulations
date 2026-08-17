@@ -18,7 +18,7 @@ cat order_sims.txt | hqsub -t array -q fw -r run_ordersims_log
 
 
 
-#---------------------------run_optimOnly.py-------------------------------#
+#---------------------------run_order.py-------------------------------#
 #!/bin/python3.9
 # load dependencies
 #NAME: run_optimOnly.py
