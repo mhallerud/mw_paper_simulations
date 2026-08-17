@@ -14,6 +14,14 @@
 * GrayFox_Templates.csv
 * SeaOtter_Templates.csv
 
+### Simulation Results:
+* **MW_SIMULATIONS_MERGED.csv**: Dimer load summaries from varying input dataset size/output panel size/algorithm simulations.
+* **ORDER_SUMMARY_ALL.csv**: Dimer load summaries from multi-level optimizations.
+
+### Panel Assessment Results:
+* SNP_panel_assessments.csv: Predicted dimer loads for existing panels, and predicted dimer loads after removing top 20% of offending primer pairs (Section 3 in the paper).
+* Predicted_Primer_Binding.zip: Folder containing full runPrimerTree outputs for existing panels.
+
 
 ## Citation
 multiplex wormhole: a pipeline for in silico design and evaluation of genotyping-by-amplicon sequencing panels. (*in prep*)
