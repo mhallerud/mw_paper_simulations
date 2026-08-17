@@ -1,5 +1,27 @@
+## The function below was run 10 times for each dataset (Marten, Fisher, GrayFox) via parallel processing on the cluster, e.g.:
+#-------------------------order_sims.txt-----------------------------#
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher1
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher2
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher3
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher4
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher5
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher6
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher7
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher8
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher9
+python3.9 run_order.py FisherWGS_singleton_templates.csv 1000 Fisher10
+...
+#----------------------(END)------------------#
+
+# submit for parallel processing on OSU's high performance computing cluster (HPC)
+cat order_sims.txt | hqsub -t array -q fw -r run_ordersims_log
+
+
+
+#---------------------------run_optimOnly.py-------------------------------#
 #!/bin/python3.9
 # load dependencies
+#NAME: run_optimOnly.py
 import sys
 import os
 import pandas as pd
@@ -89,3 +111,4 @@ def main(TEMPLATES, N1, NAME, CPUs=1):
 
 if __name__=="__main__":
         main(sys.argv[1], int(sys.argv[2]), sys.argv[3])
+#----------------------(END)------------------#
