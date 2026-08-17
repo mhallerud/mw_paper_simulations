@@ -8,8 +8,7 @@
 
 
 ## RUN PANEL DESIGN SIMULATIONS WITH STANDARD ALGORITHM
-# set up commands for each simulation:
-#!/bin/bash
+# set up commands for each simulation in bash
 for TEMPLATES in `ls -1 *Templates*.csv`; do
   for N in 20 50 100 150 200 250 300; do
     PREFIX="$(echo ${TEMPLATES} | cut -d '.' -f1 | sed 's/Templates_subset//' | cut -d'_' -f1)"
@@ -25,7 +24,7 @@ cat run_sims.txt | hqsub -t array -q fw -r mw_sims_log -p 2
 ## RUN PANEL DESIGN SIMULATIONS WITH DELTA-G ALGORITHM
 # set up function for rerunning tabulate dimers, optimization steps (saved in file run_optimOnly.sh):
 # able to skip primer design, predict dimers steps because already run above
-#run_optimOnly.sh
+#---------------------------run_optimOnly.py-------------------------------#
 #!/bin/bash
 DIR=$1
 N_LOCI="$(echo $DIR | cut -d'N' -f2)"
@@ -34,9 +33,10 @@ python3.9 ../multiplex_wormhole/src/multiplex_wormhole/tabulate_dimers.py -a ${D
 -o ${DIR}/2_PredictedDimers/PrimerPairDimers --deltaG
 python3.9 ../multiplex_wormhole/src/multiplex_wormhole/multiple_run_optimization.py -f ${DIR}/1_PrimerDesign/FilteredPrimers.fa -d ${DIR}/2_PredictedDimers/PrimerPairDimers_mean.csv \
 -t ${DIR}/2_PredictedDimers/PrimerPairDimers_wide.csv -o ${DIR}/3_OptimizedMultiplexes/${DIR}_deltaG -n ${N_LOCI} -r 10 --deltaG
-
+#-------------(END)-----------#
 
 # make run_optimOnly.txt file to run on all output dirs from above simulations, e.g.:
+#---------------------------run_optimOnly.txt--------------------------------#
 run_optimOnly.sh Marten100_N20
 run_optimOnly.sh Marten100_N50
 run_optimOnly.sh Marten500_N20
@@ -45,6 +45,8 @@ run_optimOnly.sh Marten500_N100
 run_optimOnly.sh Marten500_N150
 run_optimOnly.sh Marten500_N200
 ....
+#-------------(END)-----------#
+
 
 # then run as batch job:
 cat run_optimOnly.txt | hqsub -t array -q fw -r mw_sims_dg_log
